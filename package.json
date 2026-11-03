@@ -1,0 +1,43 @@
+{
+  "name": "MyRiskmgmt",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@cap-js/hana": "^3",
+    "@sap/cds": "^10",
+    "@sap-cloud-sdk/connectivity": "^4",
+    "@sap-cloud-sdk/http-client": "^4",
+    "@sap-cloud-sdk/resilience": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^3",
+    "@sap/dev-cap-tools": "^1.31.0",
+    "cds-plugin-ui5": "^0.17.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "BusinessPartnerA2X": {
+        "kind": "odata-v2",
+        "model": "srv/external/BusinessPartnerA2X",
+        "[production]": {
+          "credentials": {
+            "path": "s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER"
+          }
+        },
+        "csrf": true,
+        "csrfInBatch": true
+      }
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/project1"
+  ]
+}
